@@ -15,10 +15,7 @@ type AuthContext = {
 export const authContextDefaultValue: AuthContext = {
   userInfo: {
     id: 2,
-    firstName: "Илюха",
-    lastName: "Папич",
-    patronymic: "",
-    fullName: "sexer",
+    login: 'papich',
     email: "",
     isActive: true,
     authorities: [{ authority: UserAuthorityType.ADMIN }],

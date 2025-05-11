@@ -133,23 +133,16 @@ export const MentorTasksPage = (): JSX.Element => {
 
     const getFullNameStudentsForFilter = () => {
         const fullNamesStudentArray = tasksData.filter((task) => task.student)
-            .map((task) => { return { text: task.student.fullName, value: task.student.fullName }});
-        const fullNamesStudentSet = new Set(fullNamesStudentArray.map((fullName) => JSON.stringify(fullName)));
-        return Array.from(fullNamesStudentSet).map((fullName) => JSON.parse(fullName));
+            .map((task) => { return { text: task.student.login, value: task.student.login }});
+        const fullNamesStudentSet = new Set(fullNamesStudentArray.map((login) => JSON.stringify(login)));
+        return Array.from(fullNamesStudentSet).map((login) => JSON.parse(login));
     }
 
     const getFullNameMentorsForFilter = () => {
         const fullNamesMentorArray = tasksData.filter((task) => task.mentor)
-            .map((task) => { return { text: task.mentor.fullName, value: task.mentor.fullName }});
-        const fullNamesMentorSet = new Set(fullNamesMentorArray.map((fullName) => JSON.stringify(fullName)));
-        return Array.from(fullNamesMentorSet).map((fullName) => JSON.parse(fullName));
-    }
-
-    const getGroupStudentsForFilter = () => {
-        const groupsStudentArray = tasksData.filter((task) => task.student)
-            .map((task) => { return { text: task.student.groupName, value: task.student.groupName }});
-        const groupsStudentSet = new Set(groupsStudentArray.map((group) => JSON.stringify(group)));
-        return Array.from(groupsStudentSet).map((group) => JSON.parse(group));
+            .map((task) => { return { text: task.mentor.login, value: task.mentor.login }});
+        const fullNamesMentorSet = new Set(fullNamesMentorArray.map((login) => JSON.stringify(login)));
+        return Array.from(fullNamesMentorSet).map((login) => JSON.parse(login));
     }
 
     const tasksTableColumns: TableProps<Task>['columns'] = [
@@ -196,42 +189,30 @@ export const MentorTasksPage = (): JSX.Element => {
             filterSearch: true,
         },
         {
-            title: 'ФИО студента',
+            title: 'Логин студента',
             dataIndex: 'student',
             key: 'student',
             width: 450,
             align: 'center',
             render: (_, record) => (<Text>
-                {record.student?.fullName}
+                {record.student?.login}
             </Text>),
             filters: getFullNameStudentsForFilter(),
-            onFilter: (value, record) => record.student ? record.student.fullName.startsWith(value as string) : false,
+            onFilter: (value, record) => record.student ? record.student.login.startsWith(value as string) : false,
             filterSearch: true,
         },
+        
         {
-            title: 'Группа студента',
-            dataIndex: 'student',
-            key: 'student',
-            width: 450,
-            align: 'center',
-            render: (_, record) => (<Text>
-                {record.student?.groupName}
-            </Text>),
-            filters: getGroupStudentsForFilter(),
-            onFilter: (value, record) => record.student.groupName ? record.student.groupName.startsWith(value as string) : false,
-            filterSearch: true,
-        },
-        {
-            title: 'ФИО ментора',
+            title: 'Логин ментора',
             dataIndex: 'mentor',
             key: 'mentor',
             width: 450,
             align: 'center',
             render: (_, record) => (<Text>
-                {record.mentor?.fullName}
+                {record.mentor?.login}
             </Text>),
             filters: getFullNameMentorsForFilter(),
-            onFilter: (value, record) => record.mentor ? record.mentor.fullName.startsWith(value as string) : false,
+            onFilter: (value, record) => record.mentor ? record.mentor.login.startsWith(value as string) : false,
             filterSearch: true,
         },
         {
@@ -351,9 +332,9 @@ export const MentorTasksPage = (): JSX.Element => {
                         <Paragraph><Text strong style={{marginRight: '5px'}}
                         >Статус задания: </Text>{getStatusRender(selectedTask.status)}</Paragraph>
                         <Paragraph><Text strong>Тип задания: </Text>{selectedTask.type === TaskType.ESSAY ? 'Эссе' : 'Рецензия'}</Paragraph>
-                        <Paragraph><Text strong>ФИО студента: </Text>{selectedTask.student.fullName}</Paragraph>
+                        <Paragraph><Text strong>Логин студента: </Text>{selectedTask.student.login}</Paragraph>
                         <Paragraph><Text strong>E-mail студента: </Text>{selectedTask.student.email}</Paragraph>
-                        <Paragraph><Text strong>Группа студента: </Text>{selectedTask.student.groupName}</Paragraph>
+                        
                         <Paragraph><Text strong>Описание задания: </Text></Paragraph>
                         <Card>
                             <TextBlock data={selectedTask.text} />
@@ -372,7 +353,7 @@ export const MentorTasksPage = (): JSX.Element => {
                                                 avatar={item.maintainerUserType === TaskCommentUserType.USER ?
                                                     <IconUser /> : <IconSchool />}
                                                 title={item.maintainerUserType === TaskCommentUserType.USER ?
-                                                        selectedTask?.student.fullName : selectedTask?.mentor.fullName}
+                                                        selectedTask?.student.login : selectedTask?.mentor.login}
                                                 description={
                                                    <Flex vertical justify="center" gap={5}>
                                                        <Flex gap={3} align="center">
@@ -479,7 +460,7 @@ export const MentorTasksPage = (): JSX.Element => {
             >
                 {selectedTask ? (
                     <Flex vertical gap={5}>
-                        <Paragraph><Text strong>ФИО студента: </Text>{selectedTask.student.fullName}</Paragraph>
+                        <Paragraph><Text strong>Логин студента: </Text>{selectedTask.student.login}</Paragraph>
                         <Paragraph><Text strong>Коментрии: </Text></Paragraph>
                         <Card>
                             {selectedTask.comments.length ? (
@@ -492,7 +473,7 @@ export const MentorTasksPage = (): JSX.Element => {
                                                 avatar={item.maintainerUserType === TaskCommentUserType.USER ?
                                                     <IconUser /> : <IconSchool />}
                                                 title={item.maintainerUserType === TaskCommentUserType.USER ?
-                                                    selectedTask?.student.fullName : selectedTask?.mentor.fullName}
+                                                    selectedTask?.student.login : selectedTask?.mentor.login}
                                                 description={
                                                     <Flex vertical justify="center" gap={5}>
                                                         <Flex gap={3} align="center">
@@ -618,7 +599,7 @@ export const MentorTasksPage = (): JSX.Element => {
                         { required: true, message: 'Студент: обязательное поле!' },
                     ]}>
                         <Select options={studentsData.map((student) =>
-                        {return {value: student.id, label: student.fullName}})} />
+                        {return {value: student.id, label: student.login}})} />
                     </Form.Item>
                     <Form.Item label="Текст задания:">
                         <Editor
@@ -752,7 +733,7 @@ export const MentorTasksPage = (): JSX.Element => {
                         { required: true, message: 'Студент: обязательное поле!' },
                     ]}>
                         <Select options={studentsData.map((student) =>
-                        {return {value: student.id, label: student.fullName}})} />
+                        {return {value: student.id, label: student.login}})} />
                     </Form.Item>
                     <Form.Item label="Текст задания:">
                         <Editor

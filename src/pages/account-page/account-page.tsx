@@ -20,9 +20,7 @@ export const AccountPage = (): JSX.Element => {
     const navigate = useNavigate();
     const { notification } = App.useApp();
     const authContext = useContext(AuthContext);
-    const userFullName = `${authContext?.userInfo.lastName} `
-        + `${authContext?.userInfo.firstName}${authContext?.userInfo.patronymic ?
-            ' ' + authContext.userInfo.patronymic : ''}`;
+   
     const [isOpenChangePasswordModal, setIsOpenChangePasswordModal] = useState<boolean>(false);
 
     const [changePasswordForm] = Form.useForm<{ password: string, confirmPassword: string }>();
@@ -45,10 +43,10 @@ export const AccountPage = (): JSX.Element => {
                                 layout="vertical"
                             >
                                 <Form.Item
-                                    label="ФИО:"
+                                    label="Логин:"
                                     labelAlign="left"
                                 >
-                                    <Input value={userFullName} disabled style={{borderRadius: "32px", minWidth: "300px",
+                                    <Input value={authContext.userInfo.login} disabled style={{borderRadius: "32px", minWidth: "300px",
                                         width: "100%", maxWidth: "650px"}} />
                                 </Form.Item>
 
@@ -90,10 +88,10 @@ export const AccountPage = (): JSX.Element => {
                                 layout="vertical"
                             >
                                 <Form.Item
-                                    label="ФИО:"
+                                    label="Логин:"
                                     labelAlign="left"
                                 >
-                                    <Input value={userFullName} disabled style={{borderRadius: "32px", minWidth: "300px",
+                                    <Input value={authContext.userInfo.login} disabled style={{borderRadius: "32px", minWidth: "300px",
                                         width: "100%", maxWidth: "650px"}} />
                                 </Form.Item>
 
@@ -135,19 +133,14 @@ export const AccountPage = (): JSX.Element => {
                                 layout="vertical"
                             >
                                 <Form.Item
-                                    label="ФИО:"
+                                    label="Логин:"
                                     labelAlign="left"
                                 >
-                                    <Input value={userFullName} disabled style={{borderRadius: "32px", minWidth: "300px",
+                                    <Input value={authContext.userInfo.login} disabled style={{borderRadius: "32px", minWidth: "300px",
                                         width: "100%", maxWidth: "650px"}} />
                                 </Form.Item>
 
-                                <Form.Item
-                                    label="Группа:"
-                                    labelAlign="left"
-                                >
-                                    <Input value={authContext.userInfo.groupName} disabled style={{borderRadius: "32px"}} />
-                                </Form.Item>
+                               
 
                                 <Form.Item
                                     label="Ваш ментор:"
