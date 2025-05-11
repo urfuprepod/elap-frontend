@@ -427,54 +427,16 @@ export const AdminMentorsPage = (): JSX.Element => {
       >
         <Form form={registerMentorForm} layout="vertical">
           <Form.Item
-            label="Фамилия:"
+            label="Логин:"
             labelAlign="left"
-            name="lastName"
+            name="login"
             rules={[
-              { required: true, message: "Фамилия: обязательное поле!" },
-              {
-                pattern: /^[а-яА-ЯёЁ]+$/,
-                message: "Фамилия: неверный формат поля!",
-              },
+              { required: true, message: "Логин: обязательное поле!" },
+              
             ]}
           >
             <Input
-              placeholder="Введите фамилию.."
-              style={{ borderRadius: "32px" }}
-              maxLength={40}
-            />
-          </Form.Item>
-          <Form.Item
-            label="Имя:"
-            labelAlign="left"
-            name="firstName"
-            rules={[
-              { required: true, message: "Имя: обязательное поле!" },
-              {
-                pattern: /^[а-яА-ЯёЁ]+$/,
-                message: "Имя: неверный формат поля!",
-              },
-            ]}
-          >
-            <Input
-              placeholder="Введите имя.."
-              style={{ borderRadius: "32px" }}
-              maxLength={40}
-            />
-          </Form.Item>
-          <Form.Item
-            label="Отчество:"
-            labelAlign="left"
-            name="patronymic"
-            rules={[
-              {
-                pattern: /^[а-яА-ЯёЁ]+$/,
-                message: "Отчество: неверный формат поля!",
-              },
-            ]}
-          >
-            <Input
-              placeholder="Введите отчество (если оно есть).."
+              placeholder="Введите логин.."
               style={{ borderRadius: "32px" }}
               maxLength={40}
             />

@@ -338,7 +338,6 @@ export const MentorStudentsPage = (): JSX.Element => {
                         name="login"
                         rules={[
                             { required: true, message: 'Логин: обязательное поле!' },
-                            { pattern: /^[а-яА-ЯёЁ]+$/, message: 'Логин: неверный формат поля!' }
                         ]}
                     >
                         <Input placeholder="Введите логин.." style={{borderRadius: "32px"}}/>
@@ -410,7 +409,6 @@ export const MentorStudentsPage = (): JSX.Element => {
                         validateTrigger={['onChange', 'onBlur']}
                         rules={[
                             { required: true, message: 'Логин: обязательное поле!' },
-                            { pattern: /^[а-яА-ЯёЁ]+$/, message: 'Логин: неверный формат поля!' }
                         ]}
                     >
                         <Input placeholder="Введите логин.." style={{borderRadius: "32px"}} />
