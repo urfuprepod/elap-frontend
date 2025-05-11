@@ -47,10 +47,8 @@ export const MentorStudentsPage = (): JSX.Element => {
     const searchInput = useRef<InputRef>(null);
     const tableRef = useRef<TableRef>(null);
 
-    const [registerUserForm] = Form.useForm<{ firstName: string; lastName: string;
-        patronymic: string; group: string, email: string }>();
-    const [editUserForm] = Form.useForm<{ firstName: string; lastName: string;
-        patronymic: string; groupName: string; mentorId: number }>();
+    const [registerUserForm] = Form.useForm<{ login: string, email: string }>();
+    const [editUserForm] = Form.useForm<{ login: string; mentorId: number }>();
     const [massEditUserForm] = Form.useForm<{ groupName: string; mentorId: number, status: number }>();
 
     useEffect(() => {
@@ -186,19 +184,13 @@ export const MentorStudentsPage = (): JSX.Element => {
             defaultSortOrder: 'descend',
         },
         {
-            title: 'ФИО',
-            dataIndex: 'fullName',
-            width: '25%',
+            title: 'Логин',
+            dataIndex: 'login',
+            width: '35%',
             align: 'center',
-            ...getColumnSearchProps('fullName'),
+            ...getColumnSearchProps('login'),
         },
-        {
-            title: 'Группа',
-            dataIndex: 'groupName',
-            width: '10%',
-            align: 'center',
-            ...getColumnSearchProps('groupName'),
-        },
+        
         {
             title: 'E-mail',
             dataIndex: 'email',
@@ -207,7 +199,7 @@ export const MentorStudentsPage = (): JSX.Element => {
             ...getColumnSearchProps('email'),
         },
         {
-            title: 'ФИО ментора',
+            title: 'Логин ментора',
             dataIndex: 'mentor',
             width: '25%',
             render: (_, record) => (
@@ -215,7 +207,7 @@ export const MentorStudentsPage = (): JSX.Element => {
             ),
             align: 'center',
             filters: Array.from(new Set(
-                mentorsData.map((mentor) => { return { text: mentor.fullName, value: mentor.fullName }})
+                mentorsData.map((mentor) => { return { text: mentor.login, value: mentor.login }})
             )),
             onFilter: (value, record) => record.mentor ? record.mentor.fullName.startsWith(value as string) : false,
             filterSearch: true,
@@ -312,19 +304,18 @@ export const MentorStudentsPage = (): JSX.Element => {
                 centered
                 onCancel={() => {
                     setIsRegisterStudentModal(false);
-                    registerUserForm.resetFields(["firstName", "lastName", "patronymic", "group", "email"]);
+                    registerUserForm.resetFields(["login", "email"]);
                 }}
                 onOk={() => {
                     registerUserForm.validateFields().then((fields) => {
                         httpClient.axios().post(config.endPoints.registerUser, {
-                            firstName: fields.firstName, lastName: fields.lastName,
-                            patronymic: fields.patronymic, group: fields.group, email: `${fields.email}${emailType}`
+                             login: fields.login, email: `${fields.email}${emailType}`
                         }).then((response) => {
                             notification.success({
                                 message: 'Пользователь успешно создан!'
                             })
                             setIsRegisterStudentModal(false);
-                            registerUserForm.resetFields(["firstName", "lastName", "patronymic", "group", "email"]);
+                            registerUserForm.resetFields([ "login", "email"]);
                             updateStudentsAndMentorsData();
                         }).catch(() => {
                             navigate('/error')
@@ -342,45 +333,17 @@ export const MentorStudentsPage = (): JSX.Element => {
                     layout="vertical"
                 >
                     <Form.Item
-                        label="Фамилия:"
+                        label="Логин:"
                         labelAlign="left"
-                        name="lastName"
+                        name="login"
                         rules={[
-                            { required: true, message: 'Фамилия: обязательное поле!' },
-                            { pattern: /^[а-яА-ЯёЁ]+$/, message: 'Фамилия: неверный формат поля!' }
+                            { required: true, message: 'Логин: обязательное поле!' },
+                            { pattern: /^[а-яА-ЯёЁ]+$/, message: 'Логин: неверный формат поля!' }
                         ]}
                     >
-                        <Input placeholder="Введите фамилию.." style={{borderRadius: "32px"}}/>
+                        <Input placeholder="Введите логин.." style={{borderRadius: "32px"}}/>
                     </Form.Item>
-                    <Form.Item
-                        label="Имя:"
-                        labelAlign="left"
-                        name="firstName"
-                        rules={[
-                            { required: true, message: 'Имя: обязательное поле!' },
-                            { pattern: /^[а-яА-ЯёЁ]+$/, message: 'Имя: неверный формат поля!' }
-                        ]}
-                    >
-                        <Input placeholder="Введите имя.." style={{borderRadius: "32px"}}/>
-                    </Form.Item>
-                    <Form.Item
-                        label="Отчество:"
-                        labelAlign="left"
-                        name="patronymic"
-                        rules={[
-                            { pattern: /^[а-яА-ЯёЁ]+$/, message: 'Отчество: неверный формат поля!' }
-                        ]}
-                    >
-                        <Input placeholder="Введите отчество (если оно есть).." style={{borderRadius: "32px"}}/>
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Группа:"
-                        labelAlign="left"
-                        name="group"
-                    >
-                        <Input placeholder="Введите группу.." style={{borderRadius: "32px"}} />
-                    </Form.Item>
+                    
 
                     <Form.Item
                         label="E-mail:"
@@ -402,20 +365,18 @@ export const MentorStudentsPage = (): JSX.Element => {
                 centered
                 onCancel={() => {
                     setIsEditStudentModal(false);
-                    editUserForm.resetFields(["firstName", "lastName", "patronymic", "groupName", "mentorId"]);
+                    editUserForm.resetFields(["login", "mentorId"]);
                 }}
                 onClose={() => {
                     setIsEditStudentModal(false);
-                    editUserForm.resetFields(["firstName", "lastName", "patronymic", "groupName", "mentorId"]);
+                    editUserForm.resetFields(["login", "mentorId"]);
                 }}
                 onOk={() => {
                     editUserForm.validateFields().then((editUser) => {
                         const userId = selectedStudent ? selectedStudent.id.toString() : '-';
                         httpClient.axios().put(config.endPoints.editUser.replace('{userId}', userId), {
-                            firstName: editUser.firstName ? editUser.firstName : selectedStudent?.firstName,
-                            lastName: editUser.lastName ? editUser.lastName : selectedStudent?.lastName,
-                            patronymic: editUser.patronymic ? editUser.patronymic : selectedStudent?.patronymic,
-                            groupName: editUser.groupName ? editUser.groupName : selectedStudent?.groupName,
+                            login:  editUser.login ? editUser.login : selectedStudent?.login,
+                            
                             mentorId: editUser.mentorId ? editUser.mentorId : selectedStudent?.mentor?.id,
                             isActive: selectedStudent?.isActive
                     }).then(() => {
@@ -423,7 +384,7 @@ export const MentorStudentsPage = (): JSX.Element => {
                                 message: 'Пользователь успешно изменен!'
                             })
                             setIsEditStudentModal(false);
-                            editUserForm.resetFields(["firstName", "lastName", "patronymic", "groupName", "mentorId"]);
+                            editUserForm.resetFields(["login", "mentorId"]);
                             updateStudentsAndMentorsData();
                         }).catch(() => {
                             navigate('/error')
@@ -442,50 +403,21 @@ export const MentorStudentsPage = (): JSX.Element => {
                     layout="vertical"
                 >
                     <Form.Item
-                        label="Фамилия:"
+                        label="Логин:"
                         labelAlign="left"
-                        name="lastName"
-                        initialValue={selectedStudent?.lastName}
+                        name="login"
+                        initialValue={selectedStudent?.login}
                         validateTrigger={['onChange', 'onBlur']}
                         rules={[
-                            { required: true, message: 'Фамилия: обязательное поле!' },
-                            { pattern: /^[а-яА-ЯёЁ]+$/, message: 'Фамилия: неверный формат поля!' }
+                            { required: true, message: 'Логин: обязательное поле!' },
+                            { pattern: /^[а-яА-ЯёЁ]+$/, message: 'Логин: неверный формат поля!' }
                         ]}
                     >
-                        <Input placeholder="Введите фамилию.." style={{borderRadius: "32px"}} />
+                        <Input placeholder="Введите логин.." style={{borderRadius: "32px"}} />
                     </Form.Item>
-                    <Form.Item
-                        label="Имя:"
-                        labelAlign="left"
-                        name="firstName"
-                        initialValue={selectedStudent?.firstName}
-                        validateTrigger={['onChange', 'onBlur']}
-                        rules={[
-                            { required: true, message: 'Имя: обязательное поле!' },
-                            { pattern: /^[а-яА-ЯёЁ]+$/, message: 'Имя: неверный формат поля!' }
-                        ]}
-                    >
-                        <Input placeholder="Введите имя.." style={{borderRadius: "32px"}} />
-                    </Form.Item>
-                    <Form.Item
-                        label="Отчество:"
-                        labelAlign="left"
-                        name="patronymic"
-                        initialValue={selectedStudent?.patronymic}
-                        rules={[
-                            { pattern: /^[а-яА-ЯёЁ]+$/, message: 'Отчество: неверный формат поля!' }
-                        ]}
-                    >
-                        <Input placeholder="Введите отчество (если оно есть).." style={{borderRadius: "32px"}} />
-                    </Form.Item>
-                    <Form.Item
-                        label="Группа:"
-                        labelAlign="left"
-                        name="groupName"
-                        initialValue={selectedStudent?.groupName}
-                    >
-                        <Input placeholder="Введите группу.." style={{borderRadius: "32px"}} />
-                    </Form.Item>
+                    
+                   
+                   
                     <Form.Item
                         label="Ментор:"
                         labelAlign="left"
@@ -497,7 +429,7 @@ export const MentorStudentsPage = (): JSX.Element => {
                         ]}
                     >
                         <Select options={mentorsData.filter((mentor) => mentor.isActive)
-                            .map((mentor) => {return {value: mentor.id, label: mentor.fullName}})}
+                            .map((mentor) => {return {value: mentor.id, label: mentor.login}})}
                         />
                     </Form.Item>
                 </Form>
@@ -519,10 +451,8 @@ export const MentorStudentsPage = (): JSX.Element => {
                         let itemsProcessed = 0;
                         selectedStudents.forEach((user, index, array) => {
                             httpClient.axios().put(config.endPoints.editUser.replace('{userId}', user.id.toString()), {
-                                firstName: user.firstName,
-                                lastName: user.lastName,
-                                patronymic: user.patronymic,
-                                groupName: massEditUser.groupName ? massEditUser.groupName : user?.groupName,
+                                login: user.login,
+                                
                                 mentorId: massEditUser.mentorId ? massEditUser.mentorId : user?.mentor?.id,
                                 isActive: massEditUser.status !== undefined ? massEditUser.status === 1 : user?.isActive
                             }).then(() => {
@@ -555,13 +485,7 @@ export const MentorStudentsPage = (): JSX.Element => {
                     form={massEditUserForm}
                     layout="vertical"
                 >
-                    <Form.Item
-                        label="Группа:"
-                        labelAlign="left"
-                        name="groupName"
-                    >
-                        <Input placeholder="Не указано" style={{borderRadius: "32px"}} />
-                    </Form.Item>
+                   
                     <Form.Item
                         label="Ментор:"
                         labelAlign="left"
@@ -569,7 +493,7 @@ export const MentorStudentsPage = (): JSX.Element => {
                         validateTrigger={['onChange', 'onBlur']}
                     >
                         <Select placeholder="Не выбрано" options={mentorsData.filter((mentor) => mentor.isActive)
-                            .map((mentor) => {return {value: mentor.id, label: mentor.fullName}})}
+                            .map((mentor) => {return {value: mentor.id, label: mentor.login}})}
                         />
                     </Form.Item>
                     <Form.Item

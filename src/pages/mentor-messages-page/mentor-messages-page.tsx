@@ -20,14 +20,11 @@ import {FilterDropdownProps} from "antd/es/table/interface";
 import {PlusOutlined, SearchOutlined} from "@ant-design/icons";
 // @ts-ignore
 import Highlighter from "react-highlight-words";
-import {IconPlus} from "@tabler/icons-react";
 import {useNavigate} from "react-router-dom";
 import {UserInfo} from "../../shared/model/user-info";
-import {MentorInfo} from "../../shared/model/mentor-info";
 import {Message} from "../messages-page/messages-page";
 import {FileList} from "../../shared/ui/file-list/file-list";
 import TextArea from "antd/lib/input/TextArea";
-import {MessagesAgreementFileUrl} from "../../shared/model/messagesAgreementFile";
 
 const { Paragraph, Text } = Typography;
 
@@ -185,33 +182,24 @@ export const MentorMessagesPage = (): JSX.Element => {
             </Text>)
         },
         {
-            title: 'ФИО студента',
+            title: 'Логин студента',
             dataIndex: 'student',
             key: 'student',
             width: 450,
             align: 'center',
             render: (_, record) => (<Text>
-                {record.student?.fullName}
+                {record.student?.login}
             </Text>)
         },
+        
         {
-            title: 'Группа студента',
-            dataIndex: 'student',
-            key: 'student',
-            width: 450,
-            align: 'center',
-            render: (_, record) => (<Text>
-                {record.student?.groupName}
-            </Text>)
-        },
-        {
-            title: 'ФИО ментора',
+            title: 'Логин ментора',
             dataIndex: 'mentor',
             key: 'mentor',
             width: 450,
             align: 'center',
             render: (_, record) => (<Text>
-                {record.mentor?.fullName}
+                {record.mentor?.login}
             </Text>)
         },
 
@@ -346,9 +334,8 @@ export const MentorMessagesPage = (): JSX.Element => {
                 width={600}
                 footer={[]}
             >
-                <Paragraph><Text strong>ФИО студента: </Text>{requestStudent?.fullName}</Paragraph>
+                <Paragraph><Text strong>Логин студента: </Text>{requestStudent?.login}</Paragraph>
                 <Paragraph><Text strong>E-mail студента: </Text>{requestStudent?.email}</Paragraph>
-                <Paragraph><Text strong>Группа студента: </Text>{requestStudent?.groupName}</Paragraph>
                 <Paragraph><Text strong>Тема: </Text>{requestContent?.theme}</Paragraph>
                 <Paragraph><Text strong>Вопрос: </Text>{requestContent?.question}</Paragraph>
                 <Paragraph><Text strong>Файлы вопроса: </Text></Paragraph>
