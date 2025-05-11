@@ -19,13 +19,10 @@ import { config } from "../../shared/config";
 import { MetrikaCounters } from "react-metrika";
 
 type FieldType = {
-  firstName?: string;
-  lastName?: string;
-  patronymic?: string;
   email?: string;
   password?: string;
   confirmPassword?: string;
-  confirmOPD?: boolean;
+  login?: string;
 };
 
 export const RegisterPage = (): JSX.Element => {
@@ -48,13 +45,10 @@ export const RegisterPage = (): JSX.Element => {
     httpClient
       .axios()
       .post(config.endPoints.registerUser, {
-        firstName: values.firstName,
-        lastName: values.lastName,
-        patronymic: values.patronymic,
+        login: values.login,
         email: `${values.email}${emailType}`,
         password: values.password,
         confirmPassword: values.confirmPassword,
-        confirmOPD: values.confirmOPD,
       })
       .then((response) => {
         navigate("/success-register");
@@ -96,52 +90,13 @@ export const RegisterPage = (): JSX.Element => {
           layout="vertical"
         >
           <Form.Item<FieldType>
-            label="Фамилия:"
+            label="Логин:"
             labelAlign="left"
-            name="lastName"
-            rules={[
-              { required: true, message: "Фамилия: обязательное поле!" },
-              {
-                pattern: /^[а-яА-ЯёЁ]+$/,
-                message: "Фамилия: неверный формат поля!",
-              },
-            ]}
+            name="login"
+            rules={[{ required: true, message: "Логин: обязательное поле!" }]}
           >
             <Input
               placeholder="Введите фамилию.."
-              style={{ borderRadius: "32px" }}
-            />
-          </Form.Item>
-          <Form.Item<FieldType>
-            label="Имя:"
-            labelAlign="left"
-            name="firstName"
-            rules={[
-              { required: true, message: "Имя: обязательное поле!" },
-              {
-                pattern: /^[а-яА-ЯёЁ]+$/,
-                message: "Имя: неверный формат поля!",
-              },
-            ]}
-          >
-            <Input
-              placeholder="Введите имя.."
-              style={{ borderRadius: "32px" }}
-            />
-          </Form.Item>
-          <Form.Item<FieldType>
-            label="Отчество:"
-            labelAlign="left"
-            name="patronymic"
-            rules={[
-              {
-                pattern: /^[а-яА-ЯёЁ]+$/,
-                message: "Отчество: неверный формат поля!",
-              },
-            ]}
-          >
-            <Input
-              placeholder="Введите отчество (если оно есть).."
               style={{ borderRadius: "32px" }}
             />
           </Form.Item>
@@ -202,21 +157,6 @@ export const RegisterPage = (): JSX.Element => {
               placeholder="Введите пароль повторно.."
             />
           </Form.Item>
-
-          <Form.Item
-            name="confirmOPD"
-            valuePropName="checked"
-            rules={[
-              {
-                validator: (_, value) =>
-                  value
-                    ? Promise.resolve()
-                    : Promise.reject(
-                        new Error("Соглашение должно быть принято!")
-                      ),
-              },
-            ]}
-          ></Form.Item>
 
           <Text italic>
             <Text style={{ color: "red" }}>*</Text> - Поля обязательны к

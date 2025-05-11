@@ -215,7 +215,8 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
   const getNavItems = () => {
     const result: ItemType[] = [];
 
-    if (true) {
+    if (userInfo?.authorities && userInfo?.authorities
+      ?.filter((userAuthority) => userAuthority.authority === UserAuthorityType.ADMIN).length) {
       navItemsForAdmin.forEach((item) => {
         result.push({
               key: item.key,
@@ -226,8 +227,7 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
               }
         });
       });
-    } else if (userInfo?.authorities && userInfo?.authorities
-        ?.filter((userAuthority) => userAuthority.authority === UserAuthorityType.MENTOR).length) {
+    } else if (true) {
       navItemsForMentor.forEach((item) => {
         result.push({
           key: item.key,

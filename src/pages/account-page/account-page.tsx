@@ -146,7 +146,7 @@ export const AccountPage = (): JSX.Element => {
                                     label="Ваш ментор:"
                                     labelAlign="left"
                                 >
-                                    <Input value={authContext.userInfo.mentor?.fullName} disabled style={{borderRadius: "32px"}} />
+                                    <Input value={authContext.userInfo.mentor?.login} disabled style={{borderRadius: "32px"}} />
                                 </Form.Item>
                             </Form>
                             <div className="actions-block">

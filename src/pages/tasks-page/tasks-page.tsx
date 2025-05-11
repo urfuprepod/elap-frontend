@@ -178,14 +178,15 @@ export const TasksPage = (): JSX.Element => {
     commentText: string;
   }>();
 
-  useEffect(() => {
-    updateTasksData();
-  }, []);
+//   useEffect(() => {
+//     updateTasksData();
+//   }, []);
 
   const updateTasksData = () => {
+    fetch('https://jsonplaceholder.typicode.com/todos/1', {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
     httpClient
       .axios()
-      .get<Task[]>(config.endPoints.getAllTasks)
+      .get<Task[]>(config.endPoints.getAllTasks, {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}, withCredentials: true})
       .then((response) => {
         setTasksData(response.data);
       })

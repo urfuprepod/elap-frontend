@@ -26,18 +26,19 @@ export const LoginPage = (): JSX.Element => {
 
     const [resetPasswordForm] = Form.useForm<{ email: string }>();
 
-  useEffect(() => {
-    if (window.localStorage.getItem("elap:portal:auth")) {
-        loginTry();
-    }
-  }, []);
+//   useEffect(() => {
+//     if (window.localStorage.getItem("elap:portal:auth")) {
+//         loginTry();
+//     }
+//   }, []);
 
-  const loginTry = () => {
+  const loginTry = (values: FieldType) => {
         httpClient
             .axios()
-            .get<UserInfo>(config.endPoints.getUserInfoUrl)
+            .post<{user: UserInfo, accessToken: string}>(config.endPoints.login, values)
             .then((response) => {
-                const userInfo = response.data;
+                const userInfo = response.data.user;
+                localStorage.setItem('token', response.data.accessToken);
                 if (userInfo) {
                     if (userInfo.isActive) {
                         window.localStorage.setItem("elap:portal:user", JSON.stringify(userInfo));
@@ -71,7 +72,7 @@ export const LoginPage = (): JSX.Element => {
   const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
       if (values.email?.length && values.password?.length) {
           window.localStorage.setItem("elap:portal:auth", btoa(`${values.email}${emailType}:${values.password}`));
-          loginTry();
+          loginTry({...values, email: `${values.email}${emailType}`});
       } else {
           setLoginError(true);
       }

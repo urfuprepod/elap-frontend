@@ -60,6 +60,7 @@ type Config = {
     createFaqItem: string;
     editFaqItem: string;
     deleteFaqItem: string;
+    login: string
   };
 };
 
@@ -74,6 +75,7 @@ export const config: Config = {
     registerMentor: '/users/register/mentor',
     registerAdmin: '/users/register/admin',
     getUserInfoUrl: "/userInfo",
+    login:"/auth/login",
     getAllVideosInfoUrl: "/videos/",
     getAllAdvertisementsUrl: "/advertisements/",
     getLastAdvertisementsUrl: "/advertisements/last/",

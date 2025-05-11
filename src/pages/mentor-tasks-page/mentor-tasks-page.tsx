@@ -99,7 +99,7 @@ export const MentorTasksPage = (): JSX.Element => {
     }, []);
 
     const updateTasksAndUsersData = () => {
-        httpClient.axios().get<Task[]>(config.endPoints.getAllTasks).then((response) => {
+        httpClient.axios().get<Task[]>(config.endPoints.getAllTasks, {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}, withCredentials: true}).then((response) => {
             setTasksData(response.data);
         });
         httpClient.axios().get<UserInfo[]>(config.endPoints.getAllStudents).then((response) => {

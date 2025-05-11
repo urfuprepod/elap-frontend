@@ -203,13 +203,13 @@ export const MentorStudentsPage = (): JSX.Element => {
             dataIndex: 'mentor',
             width: '25%',
             render: (_, record) => (
-                <span>{record.mentor?.fullName}</span>
+                <span>{record.mentor?.login}</span>
             ),
             align: 'center',
             filters: Array.from(new Set(
                 mentorsData.map((mentor) => { return { text: mentor.login, value: mentor.login }})
             )),
-            onFilter: (value, record) => record.mentor ? record.mentor.fullName.startsWith(value as string) : false,
+            onFilter: (value, record) => record.mentor ? record.mentor.login.startsWith(value as string) : false,
             filterSearch: true,
         },
         {
