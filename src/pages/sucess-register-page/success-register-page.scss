@@ -1,0 +1,16 @@
+.success-register-page {
+  height: 100%;
+  display: flex;
+  padding: 10px 100px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+@media (max-width: 680px) {
+  .success-register-page {
+    padding: 10px 10px;
+  }
+}

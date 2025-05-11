@@ -1,0 +1,23 @@
+.learn-subsections-page {
+  height: 100%;
+  display: flex;
+  padding: 10px 100px 0 100px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .footer {
+    border: 1px solid #f0f0f0;
+    border-radius: 8px 8px 0 0;
+    padding: 20px;
+    width: 100%;
+    background-color: #f9f9f9;
+  }
+}
+
+@media (max-width: 680px) {
+  .learn-subsections-page {
+    height: auto;
+    padding: 10px 10px 0 10px;
+  }
+}

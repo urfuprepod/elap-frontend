@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Test video",
+    "videoDuration": "03:05",
+    "videoPreviewImgUrl": "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcThuC9-Coq5aeFzOysHOM4QqNN0CMV4e94E90NXxoVioFjt9Zt299Pj4172IfzfkB9BoHsrrwOVS20KILjIhb0",
+    "videoUrl": "https://drive.google.com/file/d/1fYC1ds9e2X9Ujvwmi3tanXnJlkzyNokZ/preview"
+  },
+  {
+    "title": "Test video 2",
+    "videoDuration": "30:25",
+    "videoPreviewImgUrl": "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcThuC9-Coq5aeFzOysHOM4QqNN0CMV4e94E90NXxoVioFjt9Zt299Pj4172IfzfkB9BoHsrrwOVS20KILjIhb0",
+    "videoUrl": "https://drive.google.com/file/d/1fYC1ds9e2X9Ujvwmi3tanXnJlkzyNokZ/preview"
+  },
+  {
+    "title": "Test video 3",
+    "videoDuration": "13:05",
+    "videoPreviewImgUrl": "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcThuC9-Coq5aeFzOysHOM4QqNN0CMV4e94E90NXxoVioFjt9Zt299Pj4172IfzfkB9BoHsrrwOVS20KILjIhb0",
+    "videoUrl": "https://drive.google.com/file/d/1fYC1ds9e2X9Ujvwmi3tanXnJlkzyNokZ/preview"
+  },
+  {
+    "title": "Test video 4",
+    "videoDuration": "13:05",
+    "videoPreviewImgUrl": "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcThuC9-Coq5aeFzOysHOM4QqNN0CMV4e94E90NXxoVioFjt9Zt299Pj4172IfzfkB9BoHsrrwOVS20KILjIhb0",
+    "videoUrl": "https://drive.google.com/file/d/1fYC1ds9e2X9Ujvwmi3tanXnJlkzyNokZ/preview"
+  },
+  {
+    "title": "Test video 5",
+    "videoDuration": "13:05",
+    "videoPreviewImgUrl": "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcThuC9-Coq5aeFzOysHOM4QqNN0CMV4e94E90NXxoVioFjt9Zt299Pj4172IfzfkB9BoHsrrwOVS20KILjIhb0",
+    "videoUrl": "https://drive.google.com/file/d/1fYC1ds9e2X9Ujvwmi3tanXnJlkzyNokZ/preview"
+  }
+]

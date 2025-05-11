@@ -1,0 +1,22 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+
+  .section-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .section-title {
+      font-size: 16pt;
+    }
+  }
+
+  .section-content {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,60 @@
+.header {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.ant-menu-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  gap: 3px;
+}
+
+.ant-menu-inline.ant-menu-root .ant-menu-item > .ant-menu-title-content {
+  flex: none;
+  text-wrap: wrap;
+  line-height: 20px;
+}
+
+.header-username {
+  margin-right: 20px;
+}
+
+.ant-btn {
+  font-weight: 500;
+}
+
+.ant-typography {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 950px) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .ant-layout-sider {
+    display: none;
+  }
+  .mobile-menu {
+    display: flex;
+  }
+  .ant-layout-header {
+    padding: 0 26px;
+  }
+  .header-username {
+    display: none;
+  }
+  .main-page {
+    padding: 10px 10px 0 10px;
+  }
+}

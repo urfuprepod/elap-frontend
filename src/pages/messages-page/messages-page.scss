@@ -1,0 +1,47 @@
+.messages-page {
+  height: 100%;
+  display: flex;
+  padding: 10px 100px;
+  flex-direction: column;
+  text-align: center;
+
+  .signature {
+    width: 100%;
+    text-align: right;
+  }
+
+  .ant-divider-horizontal {
+    margin-bottom: 30px;
+  }
+
+  .ant-input-group >.ant-input:first-child {
+    border-start-start-radius: 32px;
+    border-end-start-radius: 32px;
+  }
+
+  .ant-input-group .ant-input-group-addon:last-child {
+    border-start-end-radius: 32px;
+    border-end-end-radius: 32px;
+  }
+
+}
+
+.ant-modal-body {
+  div {
+    .ant-typography {
+      margin-bottom: 0;
+      margin-top: 2px;
+    }
+  }
+}
+
+@media (max-width: 680px) {
+  .messages-page {
+    height: auto;
+    padding: 10px 10px;
+
+    .ant-table-wrapper {
+      overflow: auto;
+    }
+  }
+}

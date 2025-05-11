@@ -1,0 +1,104 @@
+.main-page {
+  height: 100%;
+  display: flex;
+  padding: 100px 100px 0 100px;
+  flex-direction: column;
+
+  .hero-section {
+    margin-bottom: 100px;
+
+    .hero-text {
+      font-family: "Source Serif 4", serif;
+      display: flex;
+      justify-content: center;
+
+      .ant-flex {
+        width: 100%;
+
+        .row-1 {
+          width: 100%;
+          font-weight: 500;
+          font-size: 21pt;
+          margin: 0;
+          text-align: left;
+
+          @media (max-width: 680px) {
+            font-size: 14pt;
+          }
+
+          @media (min-width: 681px) and (max-width: 1400px) {
+            font-size: 16pt;
+          }
+        }
+
+        .row-2 {
+          width: 100%;
+          font-weight: 500;
+          font-size: 42pt;
+          margin: 0;
+          text-align: center;
+
+          @media (max-width: 680px) {
+            font-size: 24pt;
+          }
+
+          @media (min-width: 681px) and (max-width: 1400px) {
+            font-size: 32pt;
+          }
+        }
+
+        .row-3 {
+          width: 100%;
+          font-weight: 300;
+          font-size: 48pt;
+          margin: 0;
+          text-align: center;
+
+          @media (max-width: 680px) {
+            font-size: 26pt;
+          }
+
+          @media (min-width: 681px) and (max-width: 1400px) {
+            font-size: 36pt;
+          }
+        }
+
+        .row-4 {
+          width: 100%;
+          font-weight: 500;
+          font-size: 48pt;
+          margin: 0;
+          text-align: right;
+
+          @media (max-width: 680px) {
+            font-size: 28pt;
+          }
+
+          @media (min-width: 681px) and (max-width: 1400px) {
+            font-size: 36pt;
+          }
+        }
+      }
+    }
+
+    .hero-img {
+      background-color: #f6f6f6;
+      border-radius: 32px;
+    }
+  }
+
+  .footer {
+    border: 1px solid #f0f0f0;
+    border-radius: 8px 8px 0 0;
+    padding: 20px;
+    width: 100%;
+    background-color: #f9f9f9;
+  }
+}
+
+@media (max-width: 680px) {
+  .main-page {
+    height: auto;
+    padding: 10px 10px 0 10px;
+  }
+}

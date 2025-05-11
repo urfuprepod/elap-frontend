@@ -1,0 +1,53 @@
+.video-block {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  height: auto;
+  max-width: 420px;
+
+  .video-block-title {
+    font-weight: 500;
+  }
+
+  .video-block-container {
+    height: 220px;
+    cursor: pointer;
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 0.3s;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: end;
+    align-items: end;
+
+    .video-time-info {
+      background-color: rgba(33, 33, 33, 0.6);
+      padding: 1px 6px;
+      color: #fff;
+      font-weight: 500;
+      border-radius: 3px;
+    }
+  }
+
+  .video-block-container:hover {
+    filter: brightness(70%);
+  }
+
+  .video-viewing-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ant-card .ant-card-body {
+    padding: 10px;
+  }
+
+  .ant-modal {
+    width: 1000px;
+    height: 700px;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "firstName": "Иван",
+  "lastName": "Иванов",
+  "patronymic": "иванович",
+  "email": "user@urfu.ru",
+  "enabled": true,
+  "authorities": [
+    {
+      "authority": "MENTOR"
+    }
+  ],
+  "groupName": "Тестовая группа",
+  "mentor": {"id": 0, "fullName": "Петров Василий Николаевич"}
+}

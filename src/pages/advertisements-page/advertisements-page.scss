@@ -1,0 +1,30 @@
+.advertisements-page {
+  height: 100%;
+  display: flex;
+  padding: 10px 100px;
+  flex-direction: column;
+  align-items: center;
+
+  .content {
+    width: 100%;
+  }
+
+  .ant-card .ant-card-body {
+    padding: 10px;
+  }
+}
+
+.empty-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 680px) {
+  .advertisements-page {
+    height: auto;
+    padding: 10px 10px;
+  }
+}

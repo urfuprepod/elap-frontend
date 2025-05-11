@@ -1,0 +1,44 @@
+.about-page {
+  height: 100%;
+  display: flex;
+  padding: 10px 100px 0 100px;
+  flex-direction: column;
+  gap: 20px;
+
+  .section .section-content {
+    gap: 0;
+  }
+
+  .ant-typography {
+    text-align: justify;
+  }
+
+  .ant-typography ul li {
+    list-style-type: '✓';
+    padding-inline-start: 8px;
+    padding-block: 2px;
+  }
+
+  .ant-typography ul li::marker {
+    color: #c899e1;
+  }
+
+  .achievements {
+    li {
+      list-style-type: '★';
+      padding-inline-start: 8px;
+      padding-block: 2px;
+    }
+
+    li::marker {
+      color: #c899e1;
+    }
+  }
+}
+
+@media (max-width: 680px) {
+  .about-page {
+    height: auto;
+    padding: 10px 10px 0 10px;
+  }
+}

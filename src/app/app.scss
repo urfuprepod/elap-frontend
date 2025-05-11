@@ -1,0 +1,12 @@
+@import "./styles/index.scss";
+
+.tox-promotion {
+  display: none;
+}
+
+.ant-modal {
+  .ant-modal-body {
+    max-height: 700px;
+    overflow: auto;
+  }
+}
