@@ -58,7 +58,7 @@ export const MainPage = (): JSX.Element => {
                 <Paragraph>
                   {item.text}
                 </Paragraph>
-                { item?.files?.length ? <FileList files={item.files} /> : null }
+                { item?.files?.length ? <FileList link="main" files={item.files} /> : null }
                 <Flex justify="space-between" align="center" style={{marginTop: "10px"}}>
                   <Text italic>{moment(item.date).format('LLL')}</Text>
                 </Flex>

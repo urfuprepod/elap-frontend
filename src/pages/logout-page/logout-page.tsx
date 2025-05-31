@@ -7,7 +7,7 @@ export const LogoutPage = (): JSX.Element => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    httpClient.axios().post(config.endPoints.logout).then(() => {
+    httpClient.axios().get(config.endPoints.logout).then(() => {
       window.localStorage.removeItem("elap:portal:auth");
       window.localStorage.removeItem("elap:portal:user");
       window.localStorage.removeItem("elap:portal:user:lastUpdateDate");
