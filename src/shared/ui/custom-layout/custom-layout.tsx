@@ -214,6 +214,7 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
 
     const getAndSetUserInfo = () => {
         const cachedUserInfo = window.localStorage.getItem("elap:portal:user");
+        console.log(cachedUserInfo, "chelik");
         if (cachedUserInfo) {
             const userInfo: UserInfo = JSON.parse(cachedUserInfo);
             if (userInfo) {
@@ -233,7 +234,7 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
 
         if (
             userInfo?.authorities &&
-            userInfo?.authorities?.filter(
+            userInfo.authorities.filter(
                 (userAuthority) =>
                     userAuthority.authority === UserAuthorityType.ADMIN
             ).length
@@ -248,7 +249,13 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
                     },
                 });
             });
-        } else if (false) {
+        } else if (
+            userInfo?.authorities &&
+            userInfo.authorities.filter(
+                (userAuthority) =>
+                    userAuthority.authority === UserAuthorityType.MENTOR
+            ).length
+        ) {
             navItemsForMentor.forEach((item) => {
                 result.push({
                     key: item.key,

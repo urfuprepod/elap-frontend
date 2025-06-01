@@ -1,9 +1,4 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
-
-import { config } from "shared/config";
-
-import { httpClient } from "shared/api/http-client";
-import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserInfo } from "../../model/user-info";
 import { UserAuthorityType } from "../../../shared/model/user-authority";

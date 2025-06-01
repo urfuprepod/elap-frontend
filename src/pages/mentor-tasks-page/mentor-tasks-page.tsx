@@ -629,9 +629,10 @@ export const MentorTasksPage = (): JSX.Element => {
                                               )
                                             : [];
                                         const formData = new FormData();
+                                        
                                         formData.append(
                                             "commentText",
-                                            fields.text
+                                            fields.text ?? ''
                                         );
                                         newCommentFiles.forEach((file) => {
                                             formData.append(

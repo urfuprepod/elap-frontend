@@ -215,30 +215,25 @@ export const TasksPage = (): JSX.Element => {
             title: "Идентификатор задания",
             dataIndex: "id",
             key: "id",
-            width: 150,
+            width: 175,
             align: "center",
             defaultSortOrder: "descend",
         },
-        {
-            title: "Тип задания",
-            dataIndex: "type",
-            key: "type",
-            width: 150,
-            align: "center",
-            render: (_, record) =>
-                record.type === TaskType.REVIEW ? (
-                    <span>Рецензия</span>
-                ) : (
-                    <span>Эссе</span>
-                ),
-        },
+
         {
             title: "Логин ментора",
             dataIndex: "student",
             key: "student",
-            width: 450,
+            width: 500,
             align: "center",
             render: (_, record) => <Text>{record.mentor?.login}</Text>,
+        },
+        {
+            title: "E-mail ментора",
+            dataIndex: "email",
+            key: "email",
+            align: "center",
+            render: (_, record) => <Text>{record?.mentor?.email ?? ""}</Text>,
         },
         {
             title: "Статус",
@@ -251,7 +246,7 @@ export const TasksPage = (): JSX.Element => {
             title: "Доступные действия",
             key: "action",
             align: "center",
-            width: 100,
+            width: 125,
             render: (_, record) => (
                 <Flex justify="center" align="center" vertical>
                     <Button
@@ -356,12 +351,7 @@ export const TasksPage = (): JSX.Element => {
                                     </Text>
                                     {getStatusRender(selectedTask.status)}
                                 </Paragraph>
-                                <Paragraph>
-                                    <Text strong>Тип задания: </Text>
-                                    {selectedTask.type === TaskType.ESSAY
-                                        ? "Эссе"
-                                        : "Рецензия"}
-                                </Paragraph>
+
                                 <Paragraph>
                                     <Text strong>Логин ментора: </Text>
                                     {selectedTask.mentor.login}
@@ -515,6 +505,16 @@ export const TasksPage = (): JSX.Element => {
                                       )
                                     : [];
                                 const formData = new FormData();
+
+                                if (
+                                    !editorRef.current.getContent() &&
+                                    !responseFiles.length
+                                ) {
+                                    notification.error({
+                                        message: "Напишите текст ответа или отправьте файл",
+                                    });
+                                    return
+                                }
                                 formData.append(
                                     "responseText",
                                     editorRef.current.getContent()
