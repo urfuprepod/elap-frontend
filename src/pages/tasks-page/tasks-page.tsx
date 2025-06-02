@@ -26,7 +26,6 @@ import { UserInfo } from "../../shared/model/user-info";
 import { FileList } from "../../shared/ui/file-list/file-list";
 import TextArea from "antd/lib/input/TextArea";
 import { TextBlock } from "../../shared/ui/blocks/text-block/text-block";
-import moment from "moment";
 import { httpClient } from "../../shared/api/http-client";
 import { config } from "../../shared/config";
 import { PlusOutlined } from "@ant-design/icons";
@@ -34,6 +33,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { AuthContext } from "../../shared/ui/auth-context/auth-context";
 import { AxiosError } from "axios";
 import { MetrikaCounter } from "react-metrika";
+import { formatDate } from "shared/methods";
 
 const { Paragraph, Text } = Typography;
 
@@ -420,10 +420,8 @@ export const TasksPage = (): JSX.Element => {
                                                                     <Text
                                                                         italic
                                                                     >
-                                                                        {moment(
-                                                                            item.date
-                                                                        ).format(
-                                                                            "LLL"
+                                                                        {formatDate(
+                                                                            `${item.date}`
                                                                         )}
                                                                     </Text>
                                                                 </Flex>
@@ -511,9 +509,10 @@ export const TasksPage = (): JSX.Element => {
                                     !responseFiles.length
                                 ) {
                                     notification.error({
-                                        message: "Напишите текст ответа или отправьте файл",
+                                        message:
+                                            "Напишите текст ответа или отправьте файл",
                                     });
-                                    return
+                                    return;
                                 }
                                 formData.append(
                                     "responseText",

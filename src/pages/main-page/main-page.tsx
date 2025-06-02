@@ -7,11 +7,11 @@ import {Section} from "../../shared/ui/section/section";
 import {Advertisement} from "../../shared/model/advertisement";
 import {httpClient} from "../../shared/api/http-client";
 import {config} from "../../shared/config";
-import moment from "moment";
 import {FileList} from "../../shared/ui/file-list/file-list";
 import {FaqItem} from "../../shared/model/faq-item";
 import {Footer} from "../../shared/ui/footer/footer";
 import {MetrikaCounter, MetrikaCounters} from "react-metrika";
+import { formatDate } from "shared/methods";
 
 const {Paragraph, Text } = Typography;
 
@@ -60,7 +60,7 @@ export const MainPage = (): JSX.Element => {
                 </Paragraph>
                 { item?.files?.length ? <FileList link="main" files={item.files} /> : null }
                 <Flex justify="space-between" align="center" style={{marginTop: "10px"}}>
-                  <Text italic>{moment(item.date).format('LLL')}</Text>
+                  <Text italic>{formatDate(`${item.date}`)}</Text>
                 </Flex>
               </Card>
             </Col>

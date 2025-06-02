@@ -25,7 +25,6 @@ import { useNavigate } from "react-router-dom";
 import { UserAuthorityType } from "../../shared/model/user-authority";
 import { IconEdit, IconPlus, IconTrash } from "@tabler/icons-react";
 import TextArea from "antd/lib/input/TextArea";
-import moment from "moment/moment";
 import { FileList } from "../../shared/ui/file-list/file-list";
 import { PlusOutlined } from "@ant-design/icons";
 import { saveAs } from "file-saver";
@@ -34,6 +33,7 @@ import {
     appendFilesToFormData,
     getUploadFiles,
 } from "../../shared/util/file-util";
+import { formatDate } from "shared/methods";
 
 const { Paragraph, Text } = Typography;
 
@@ -113,9 +113,7 @@ export const AdvertisementsPage = (): JSX.Element => {
                                 align="center"
                                 style={{ marginTop: "10px" }}
                             >
-                                <Text italic>
-                                    {moment(item.date).format("LLL")}
-                                </Text>
+                                <Text italic>{formatDate(`${item.date}`)}</Text>
                                 {authContext?.userInfo.authorities?.filter(
                                     (authorityInfo) =>
                                         authorityInfo.authority ===

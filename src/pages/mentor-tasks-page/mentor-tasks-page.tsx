@@ -38,7 +38,6 @@ import { UserInfo } from "../../shared/model/user-info";
 import { FileList } from "../../shared/ui/file-list/file-list";
 import TextArea from "antd/lib/input/TextArea";
 import { TextBlock } from "../../shared/ui/blocks/text-block/text-block";
-import moment from "moment";
 import { httpClient } from "../../shared/api/http-client";
 import { config } from "../../shared/config";
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
@@ -48,6 +47,7 @@ import {
     appendFilesToFormData,
     getUploadFiles,
 } from "../../shared/util/file-util";
+import { formatDate } from "shared/methods";
 
 const { Paragraph, Text } = Typography;
 
@@ -387,7 +387,11 @@ export const MentorTasksPage = (): JSX.Element => {
                 rowKey="id"
                 {...tasksTableProps}
                 columns={tasksTableColumns}
-                pagination={{ position: ["bottomCenter"], pageSize: 6, hideOnSinglePage: true }}
+                pagination={{
+                    position: ["bottomCenter"],
+                    pageSize: 6,
+                    hideOnSinglePage: true,
+                }}
                 dataSource={tasksData}
                 bordered
                 rowSelection={{ type: "checkbox", ...rowSelection }}
@@ -481,9 +485,9 @@ export const MentorTasksPage = (): JSX.Element => {
                                                                 size={18}
                                                             />
                                                             <Text italic>
-                                                                {moment(
-                                                                    item.date
-                                                                ).format("LLL")}
+                                                                {formatDate(
+                                                                    `${item.date}`
+                                                                )}
                                                             </Text>
                                                         </Flex>
                                                         <Text>
@@ -629,10 +633,10 @@ export const MentorTasksPage = (): JSX.Element => {
                                               )
                                             : [];
                                         const formData = new FormData();
-                                        
+
                                         formData.append(
                                             "commentText",
-                                            fields.text ?? ''
+                                            fields.text ?? ""
                                         );
                                         newCommentFiles.forEach((file) => {
                                             formData.append(
@@ -724,9 +728,9 @@ export const MentorTasksPage = (): JSX.Element => {
                                                                 size={18}
                                                             />
                                                             <Text italic>
-                                                                {moment(
-                                                                    item.date
-                                                                ).format("LLL")}
+                                                                {formatDate(
+                                                                    `${item.date}`
+                                                                )}
                                                             </Text>
                                                         </Flex>
                                                         <Text>
