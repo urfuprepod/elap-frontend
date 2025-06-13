@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2efbef17.css",
+    "main.js": "/static/js/main.3cde4c1d.js",
+    "static/js/671.90181212.chunk.js": "/static/js/671.90181212.chunk.js",
+    "static/js/453.28800597.chunk.js": "/static/js/453.28800597.chunk.js",
+    "static/js/116.af134abc.chunk.js": "/static/js/116.af134abc.chunk.js",
+    "static/media/4.webp": "/static/media/4.4d26c629d0f5fea6fc71.webp",
+    "static/media/2.webp": "/static/media/2.70def31567965f84e222.webp",
+    "static/media/1.webp": "/static/media/1.4151d6326c46d03bce75.webp",
+    "static/media/3.webp": "/static/media/3.f4d86eac546f02b2cbe9.webp",
+    "static/media/logo_urfu.svg": "/static/media/logo_urfu.023b41368f6c570f7a84b2501b147316.svg",
+    "static/media/hero1.webp": "/static/media/hero1.199f45c4db0041e8e956.webp",
+    "static/media/logo.svg": "/static/media/logo.e9d771ef6faa369ff8f27e240428019c.svg",
+    "static/media/6.webp": "/static/media/6.b82ca87229e764d7a81a.webp",
+    "static/media/5.webp": "/static/media/5.5f249fc726ee54944cf6.webp",
+    "index.html": "/index.html",
+    "main.2efbef17.css.map": "/static/css/main.2efbef17.css.map",
+    "main.3cde4c1d.js.map": "/static/js/main.3cde4c1d.js.map",
+    "671.90181212.chunk.js.map": "/static/js/671.90181212.chunk.js.map",
+    "453.28800597.chunk.js.map": "/static/js/453.28800597.chunk.js.map",
+    "116.af134abc.chunk.js.map": "/static/js/116.af134abc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2efbef17.css",
+    "static/js/main.3cde4c1d.js"
+  ]
+}
