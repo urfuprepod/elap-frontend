@@ -1,9 +1,6 @@
 import React from "react";
 import { List, Typography } from "antd";
 import { IconDownload } from "@tabler/icons-react";
-import { saveAs } from "file-saver";
-import { httpClient } from "../../api/http-client";
-import { config } from "../../config";
 
 const { Text } = Typography;
 
@@ -36,7 +33,6 @@ export const FileList: React.FC<FileListProps> = (props) => {
                             target="_blank" // Открывает в новой вкладке (опционально)
                             rel="noopener noreferrer" // Безопасность для target="_blank"
                             href={
-                                `http://localhost:5500/` +
                                 `static/${link}/` +
                                 item
                             }
