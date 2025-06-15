@@ -1,5 +1,5 @@
-import {UserAuthority} from "./user-authority";
-import {MentorInfo} from "./mentor-info";
+import { UserAuthority } from "./user-authority";
+import { MentorInfo } from "./mentor-info";
 
 export type UserInfo = {
     id: number;
