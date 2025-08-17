@@ -33,5 +33,5 @@ export type ImageBlockData = {
 export type BlockInfo = {
     id: number;
     type: BlockType;
-    data: TextBlockData | VideoBlockData | LinkBlockData | AudioBlockData | ImageBlockData;
+    data: any
 };

@@ -294,9 +294,10 @@ export const MentorStudentsPage = (): JSX.Element => {
             <Table<UserInfo>
                 {...tableProps}
                 rowKey="id"
-                pagination={{ position: ["bottomCenter"], pageSize: 6 }}
+                pagination={{ position: ["bottomCenter"], pageSize: 6, hideOnSinglePage: true }}
                 columns={tableColumns}
                 dataSource={studentsData}
+
                 rowSelection={{ type: 'checkbox', ...rowSelection }}
             />
             <Modal

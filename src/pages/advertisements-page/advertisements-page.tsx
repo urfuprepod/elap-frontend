@@ -113,7 +113,11 @@ export const AdvertisementsPage = (): JSX.Element => {
                                 align="center"
                                 style={{ marginTop: "10px" }}
                             >
-                                <Text italic>{formatDate(`${item.date}`)}</Text>
+                                <Text italic>
+                                    {formatDate(
+                                        `${item.updatedAt.split("T")[0]}`
+                                    )}
+                                </Text>
                                 {authContext?.userInfo.authorities?.filter(
                                     (authorityInfo) =>
                                         authorityInfo.authority ===

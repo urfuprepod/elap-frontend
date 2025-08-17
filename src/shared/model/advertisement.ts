@@ -4,4 +4,5 @@ export type Advertisement = {
   text: string;
   date: Date;
   files?: string[];
+  updatedAt: string
 };

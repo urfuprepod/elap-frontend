@@ -96,7 +96,7 @@ export const RegisterPage = (): JSX.Element => {
             rules={[{ required: true, message: "Логин: обязательное поле!" }]}
           >
             <Input
-              placeholder="Введите фамилию.."
+              placeholder="Введите имя пользователя.."
               style={{ borderRadius: "32px" }}
             />
           </Form.Item>
