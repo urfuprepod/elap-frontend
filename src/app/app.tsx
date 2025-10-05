@@ -83,7 +83,7 @@ function App() {
                             itemActiveBg: "#fff",
                             itemSelectedBg: "#fff",
                             itemHeight: 95,
-                            itemMarginBlock: 12,
+                            itemMarginBlock: 8,
                             itemMarginInline: 20,
                             iconMarginInlineEnd: 0,
 

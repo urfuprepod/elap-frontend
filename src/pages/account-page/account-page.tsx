@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 
 import "./account-page.scss";
-import { AuthContext } from "../../shared/ui/auth-context/auth-context";
 import { App, Button, Flex, Form, Input, Modal, Spin, Typography } from "antd";
 import { IconChecklist, IconMessageCircleQuestion } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
@@ -358,7 +357,6 @@ export const AccountPage = (): JSX.Element => {
                     </Form>
                 </Modal>
             </>
-            )
         </div>
     );
 };

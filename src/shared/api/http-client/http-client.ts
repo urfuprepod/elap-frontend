@@ -12,7 +12,7 @@ const axios = (baseURL?: string) => {
   let instance: AxiosInstance = axiosInstance;
 
   instance = axiosStatic.create({
-    baseURL: "http://localhost:5500/api",
+    // baseURL: "http://localhost:5500/api",
     withCredentials: true
   });
   setupInterceptors(instance);

@@ -32,24 +32,14 @@ export const FileList: React.FC<FileListProps> = (props) => {
                             download // Заставляет браузер скачивать файл, а не открывать его
                             target="_blank" // Открывает в новой вкладке (опционально)
                             rel="noopener noreferrer" // Безопасность для target="_blank"
-                            href={
-                                `static/${link}/` +
-                                item
-                            }
-                            //  onClick={() => {
-
-                            //      httpClient.axios().get<Blob>(config.endPoints.getFile
-                            //          .replace('{fullFileName}', item), {responseType: "blob"}).then((response) => {
-                            //          saveAs(response.data, item.substring(item.lastIndexOf(':') + 4));
-                            //      })
-                            //  }}
+                            href={`static/${link}/` + item}
                         >
                             <IconDownload size={24} />
                         </a>,
                     ]}
                 >
                     <Text italic>
-                        {item.substring(item.lastIndexOf(":") + 4)}
+                        {item}
                     </Text>
                 </List.Item>
             )}

@@ -235,7 +235,7 @@ export const AdminMentorsPage = (): JSX.Element => {
       defaultSortOrder: "descend",
     },
     {
-      title: "ФИО",
+      title: "Логин",
       dataIndex: "login",
       width: "30%",
       align: "center",

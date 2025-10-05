@@ -1,7 +1,6 @@
 import {
     IconAd2,
     IconBookmark,
-    IconBurger,
     IconChecklist,
     IconContract,
     IconHome,
@@ -26,13 +25,11 @@ import {
     Tooltip,
     Typography,
 } from "antd";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./custom-layout.scss";
 import { useLocation, useNavigate } from "react-router-dom";
-import { UserInfo } from "../../model/user-info";
 import { UserAuthorityType } from "../../model/user-authority";
 import Logo from "../../../media/logo.svg";
-import { DownOutlined } from "@ant-design/icons";
 import { ItemType, MenuItemType } from "antd/es/menu/interface";
 import { useUserState } from "app/store/useUserState";
 
@@ -332,7 +329,7 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <Layout style={{ height: "100vh" }}>
-            <Sider width={200}>
+            <Sider width={200} className="sider">
                 <Flex justify="center" align="center">
                     <img
                         style={{ marginLeft: "22px", cursor: "pointer" }}
@@ -343,7 +340,7 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
                     />
                 </Flex>
 
-                <div style={{ overflow: "auto", height: "85%" }}>
+                <div className="menu-container">
                     <Menu
                         mode="inline"
                         selectedKeys={navItems.activeKey}

@@ -935,6 +935,7 @@ export const MentorTasksPage = (): JSX.Element => {
                         ]}
                     >
                         <Select
+                            mode="multiple"
                             options={studentsData.map((student) => {
                                 return {
                                     value: student.id,

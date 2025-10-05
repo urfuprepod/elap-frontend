@@ -45,7 +45,7 @@ export const AboutPage = (): JSX.Element => {
             "Два года преподавал на ИРИТ-РТФ",
             "Автор мобильного приложеничя УРФУ.Учеба",
         ],
-        imageUrl: "",
+        imageUrl: "https://sun9-73.userapi.com/s/v1/ig2/qxP0jFcEkwKKmzDaX07gYUPAtgAx9yhuG01NlNs5yseccCm7FkxLX-p8uovSqc1lIsPr6sZf9DfZmKRQajH181my.jpg?quality=95&as=32x71,48x107,72x160,108x240,160x355,240x533,360x799,480x1066,540x1199,640x1421,720x1599,1080x2398,1153x2560&from=bu&cs=1153x0",
         socialLinks: [
             {
                 socialTypeName: "Страница ВК",
@@ -406,13 +406,13 @@ export const AboutPage = (): JSX.Element => {
             <Section title="Команда проекта">
                 <Row gutter={[16, 16]}>{getAuthors()}</Row>
                 <Row
-                    style={{cursor: 'pointer'}}
+                    style={{cursor: 'pointer', minHeight: 30}}
                     gutter={[16, 16]}
                     onClick={() => {
                         setCounter((prev) => prev + 1);
                     }}
                 >
-                    {counter >= 5 && <AuthorCard author={secretAuthor} />}
+                    {counter >= 5 && <AuthorCard style={{objectFit: 'cover', objectPosition: '1px -93px'}} author={secretAuthor} />}
                 </Row>
             </Section>
             <Footer />
@@ -422,9 +422,10 @@ export const AboutPage = (): JSX.Element => {
 
 type Props = {
     author: AuthorInfo;
+    style?: React.CSSProperties
 };
 const AuthorCard: FC<Props> = (props) => {
-    const { author } = props;
+    const { author, style } = props;
 
     return (
         <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
@@ -444,6 +445,7 @@ const AuthorCard: FC<Props> = (props) => {
                                 style={{
                                     borderRadius: "50%",
                                     border: "solid 1px #f3f3f3",
+                                    ...style,
                                 }}
                             />
                         </Flex>
