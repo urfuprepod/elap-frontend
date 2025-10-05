@@ -12,7 +12,7 @@ const axios = (baseURL?: string) => {
   let instance: AxiosInstance = axiosInstance;
 
   instance = axiosStatic.create({
-    // baseURL: "http://localhost:5500/api",
+    baseURL: "/api",
     withCredentials: true
   });
   setupInterceptors(instance);
@@ -26,5 +26,8 @@ export const httpClient: HttpClient = {
   axios,
 };
 
-
-
+// export const BaseInstanse = axios.create({
+//   withCredentials: true,
+//   baseURL: `${urlApi}`,
+//   headers: { "Content-Type": "multipart/form-data" },
+// });
