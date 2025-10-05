@@ -34,6 +34,7 @@ import { UserAuthorityType } from "../../model/user-authority";
 import Logo from "../../../media/logo.svg";
 import { DownOutlined } from "@ant-design/icons";
 import { ItemType, MenuItemType } from "antd/es/menu/interface";
+import { useUserState } from "app/store/useUserState";
 
 const { Header, Content, Sider } = Layout;
 
@@ -203,27 +204,7 @@ const navItemsForAdmin: NavItem[] = [
 export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-
-    useEffect(() => {
-        getAndSetUserInfo();
-        window.addEventListener("storage", () => {
-            getAndSetUserInfo();
-        });
-    }, []);
-
-    const getAndSetUserInfo = () => {
-        const cachedUserInfo = window.localStorage.getItem("elap:portal:user");
-        console.log(cachedUserInfo, "chelik");
-        if (cachedUserInfo) {
-            const userInfo: UserInfo = JSON.parse(cachedUserInfo);
-            if (userInfo) {
-                setUserInfo(userInfo);
-            }
-        } else {
-            setUserInfo(null);
-        }
-    };
+    const { user } = useUserState();
 
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -233,8 +214,8 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
         const result: ItemType[] = [];
 
         if (
-            userInfo?.authorities &&
-            userInfo.authorities.filter(
+            user?.authorities &&
+            user.authorities.filter(
                 (userAuthority) =>
                     userAuthority.authority === UserAuthorityType.ADMIN
             ).length
@@ -250,8 +231,8 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
                 });
             });
         } else if (
-            userInfo?.authorities &&
-            userInfo.authorities.filter(
+            user?.authorities &&
+            user.authorities.filter(
                 (userAuthority) =>
                     userAuthority.authority === UserAuthorityType.MENTOR
             ).length
@@ -266,7 +247,7 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
                     },
                 });
             });
-        } else if (userInfo) {
+        } else if (user) {
             navItemsForUser.forEach((item) => {
                 result.push({
                     key: item.key,
@@ -297,8 +278,8 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
         let result: string = "";
 
         if (
-            userInfo?.authorities &&
-            userInfo.authorities.filter(
+            user?.authorities &&
+            user.authorities.filter(
                 (userAuthority) =>
                     userAuthority.authority === UserAuthorityType.ADMIN
             ).length
@@ -310,8 +291,8 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
                 result = activePage.key;
             }
         } else if (
-            userInfo?.authorities &&
-            userInfo.authorities.filter(
+            user?.authorities &&
+            user.authorities.filter(
                 (userAuthority) =>
                     userAuthority.authority === UserAuthorityType.MENTOR
             ).length
@@ -347,7 +328,7 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
                 return pathname.includes(String(el.key));
             })?.key ?? "none";
         return { items: active, activeKey: [String(activeKey)] };
-    }, [pathname, userInfo]);
+    }, [pathname, user]);
 
     return (
         <Layout style={{ height: "100vh" }}>
@@ -394,9 +375,9 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
                         </Dropdown>
                     </Flex>
                     <Flex justify="center" align="center" gap={15}>
-                        {userInfo ? (
+                        {user ? (
                             <span className="header-username">
-                                {userInfo.login}
+                                {user.login}
                             </span>
                         ) : (
                             <Button
@@ -410,7 +391,7 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
                                 Войти
                             </Button>
                         )}
-                        {userInfo ? (
+                        {user ? (
                             <Tooltip title="Личный кабинет" placement="bottom">
                                 <Button
                                     shape="circle"
@@ -422,7 +403,7 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
                                 />
                             </Tooltip>
                         ) : null}
-                        {userInfo ? (
+                        {user ? (
                             <Tooltip title="Выйти" placement="bottom">
                                 <Button
                                     shape="circle"

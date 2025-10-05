@@ -48,7 +48,7 @@ export const MainPage = (): JSX.Element => {
     if (lastAdvertisementsData.length) {
       lastAdvertisementsData.forEach((item) => {
         result.push(
-            <Col xs={24} sm={24} md={24} lg={24}
+            <Col key={item.id} xs={24} sm={24} md={24} lg={24}
                  xl={lastAdvertisementsData.length === 1 ? 24 : (lastAdvertisementsData.length === 2 ? 12 : 8)}
                  xxl={lastAdvertisementsData.length === 1 ? 24 : (lastAdvertisementsData.length === 2 ? 12 : 8)}>
               <Card style={{backgroundColor: "#d8b2ed", height: "100%"}} bordered={false}>

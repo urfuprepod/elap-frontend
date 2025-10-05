@@ -61,6 +61,7 @@ type Config = {
     editFaqItem: string;
     deleteFaqItem: string;
     login: string
+    getMe: string
   };
 };
 
@@ -68,6 +69,7 @@ export const config: Config = {
   baseApiUrl: "/api",
   endPoints: {
     registerUser: '/users/register',
+    getMe: '/auth/me',
     createResetPasswordRequest: '/users/resetPassRequest',
     validateResetPasswordRequest: '/users/resetPassRequest/{resetPassRequestId}/validate',
     changePassword: '/users/changePass',

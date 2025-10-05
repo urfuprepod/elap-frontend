@@ -28,7 +28,6 @@ import Highlighter from "react-highlight-words";
 import { IconEdit, IconPlus } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { UserInfo } from "../../shared/model/user-info";
-import { Message } from "../messages-page/messages-page";
 
 const { Paragraph, Text } = Typography;
 

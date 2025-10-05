@@ -26,8 +26,5 @@ export const httpClient: HttpClient = {
   axios,
 };
 
-// export const BaseInstanse = axios.create({
-//   withCredentials: true,
-//   baseURL: `${urlApi}`,
-//   headers: { "Content-Type": "multipart/form-data" },
-// });
+
+

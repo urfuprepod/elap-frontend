@@ -26,12 +26,6 @@ export const LoginPage = (): JSX.Element => {
 
     const [resetPasswordForm] = Form.useForm<{ email: string }>();
 
-//   useEffect(() => {
-//     if (window.localStorage.getItem("elap:portal:auth")) {
-//         loginTry();
-//     }
-//   }, []);
-
   const loginTry = (values: FieldType) => {
         httpClient
             .axios()

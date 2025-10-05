@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./app.scss";
 import { config } from "shared/config";
@@ -33,10 +33,26 @@ import { TasksPage } from "../pages/tasks-page";
 import { SuccessRegisterPage } from "../pages/sucess-register-page";
 import { ResetPasswordPage } from "../pages/reset-password-page";
 import { AdminFaqPage } from "../pages/admin-faq-page";
+import { useUserState } from "./store/useUserState";
 
 httpClient.axios().defaults.baseURL = config.baseApiUrl;
 
 function App() {
+    const { user, updateUser } = useUserState();
+
+    useEffect(() => {
+        httpClient
+            .axios()
+            .get(config.endPoints.getMe)
+            .then((user) => {
+                updateUser(user.data.user);
+            })
+            .catch(() => {
+                updateUser();
+            });
+    }, []);
+
+    if (user === undefined) return null;
     return (
         <Router>
             <ConfigProvider
