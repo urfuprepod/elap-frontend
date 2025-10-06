@@ -108,7 +108,7 @@ export const MainPage = (): JSX.Element => {
                                 align="center"
                                 style={{ marginTop: "10px" }}
                             >
-                                <Text italic>{formatDate(`${item.date}`)}</Text>
+                                <Text italic>{formatDate(`${item.updatedAt}`)}</Text>
                             </Flex>
                         </Card>
                     </Col>
